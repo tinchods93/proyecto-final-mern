@@ -1,11 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let indexRouter = require('./routes/index');
 
-var indexRouter = require('./routes/index');
-
-var app = express();
+let app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
