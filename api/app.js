@@ -1,32 +1,40 @@
-let createError = require('http-errors');
-let express = require('express');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let indexRouter = require('./routes/index');
+const express = require('express');
+const indexRouter = require('./routes/index.routes');
+const dbConfig = require('./config/db.config');
+const cors = require('cors');
+//Express config
+const app = express();
 
-let app = express();
+let corsOptions = {
+  origin: 'http://localhost:8081',
+};
 
-app.use(logger('dev'));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
+//Database
+const { db } = require('./models/index');
+const initialSetup = require('./services/initialSetup');
+
+db.mongoose
+  .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
+  .then(() => {
+    console.log('Successfully connect to MongoDB.');
+    initialSetup();
+  })
+  .catch((err) => {
+    console.error('Connection error', err);
+    process.exit();
+  });
+
+//Routes
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+//Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
 
 module.exports = app;

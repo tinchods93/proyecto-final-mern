@@ -1,0 +1,46 @@
+{
+  "vaccination": [
+    {
+      "name": "Super Domo",
+      "address": "Av Los Cactus",
+      "latitude": "-29.4406437",
+      "longitude": "-66.893458",
+      "url": "https://www.google.com.ar/maps/place/Super+Domo/@-29.4406437,-66.893458,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipMuVDF30tJY7F-gCM0g6qgqmuGrYox9NGd7dlFp!2e10!3e12!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipMuVDF30tJY7F-gCM0g6qgqmuGrYox9NGd7dlFp%3Dw397-h298-k-no!7i4160!8i3120!4m7!3m6!1s0x9427dbfd1a2b3159:0xc8a1dc8365fbcfa!8m2!3d-29.4406437!4d-66.893458!14m1!1BCgIgAQ"
+    },
+    {
+      "name": "Sindicato del Plastico",
+      "address": "Calle Tala esq Las Rosas",
+      "latitude": "-29.4212615",
+      "longitude": "-66.8572579",
+      "url": "https://www.google.com.ar/maps/place/Sindicato+del+Pl%C3%A1stico+La+Rioja/@-29.4212615,-66.8572579,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipMKrDB7s-L3AaXnmNJy0iA8Z3sjrw3O830rY7Ks!2e10!3e12!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipMKrDB7s-L3AaXnmNJy0iA8Z3sjrw3O830rY7Ks%3Dw114-h86-k-no!7i4000!8i3000!4m5!3m4!1s0x9427db082d003381:0x8187ddc5106325e2!8m2!3d-29.4212745!4d-66.8572572"
+    },
+    {
+      "name": "SUM Esc Polivalente",
+      "address": "Puerto Argentino (Frente Esc. Polivalente) B° Hospital",
+      "latitude": "-29.4149765",
+      "longitude": "-66.8402954",
+      "url": "https://www.google.com.ar/maps/place/Centro+Polivalente+de+Arte/@-29.4149765,-66.8402954,3a,75y,148.89h,90t/data=!3m7!1e1!3m5!1sfj_ZfM0gcPQFJTeQkqt7OQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3Dfj_ZfM0gcPQFJTeQkqt7OQ%26cb_client%3Dmaps_sv.tactile.gps%26w%3D224%26h%3D298%26yaw%3D148.88602%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656!4m7!3m6!1s0x9427da390c8c51cb:0xed42cb322ad341c0!8m2!3d-29.4151282!4d-66.8402181!14m1!1BCgIgARICCAI"
+    },
+    {
+      "name": "Polideportivo de Vargas",
+      "address": "Jorge Newvery 99",
+      "latitude": "-29.3951157",
+      "longitude": "-66.8460929",
+      "url": "https://www.google.com.ar/maps/place/Polideportivo+De+Vargas/@-29.3951157,-66.8460929,3a,75y,145.77h,74.42t/data=!3m7!1e1!3m5!1sqsQwGp_4cFA3W2LoeCIKIQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DqsQwGp_4cFA3W2LoeCIKIQ%26cb_client%3Dmaps_sv.tactile.gps%26w%3D224%26h%3D298%26yaw%3D172.44891%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656!4m7!3m6!1s0x9427da5732378cf9:0xc3683c4662399443!8m2!3d-29.3954144!4d-66.8460385!14m1!1BCgIgARICCAI"
+    },
+    {
+      "name": "Parque de la Familia",
+      "address": "Av del Bicentenario",
+      "latitude": "-29.4534967",
+      "longitude": "-66.8677815",
+      "url": "https://www.google.com.ar/maps/place/Parque+de+la+Familia/@-29.4534967,-66.8677815,17z/data=!4m14!1m8!3m7!1s0x9427d9d4f6df2315:0x913733cf1ef02ceb!2sParque+de+la+Familia!8m2!3d-29.4535271!4d-66.8677654!14m1!1BCgIgARICCAI!3m4!1s0x9427d9d4f6df2315:0x913733cf1ef02ceb!8m2!3d-29.4535271!4d-66.8677654"
+    },
+    {
+      "name": "Club Rioja Jrs",
+      "address": "Chaco Peñaloza 600",
+      "latitude": "-29.4210021",
+      "longitude": "-66.8406496",
+      "url": "https://www.google.com.ar/maps/place/Club+Rioja+Jr/@-29.4210021,-66.8406496,3a,75y,293.01h,90t/data=!3m7!1e1!3m5!1sq-ub9r89aHjIDu3CW0o96A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3Dq-ub9r89aHjIDu3CW0o96A%26cb_client%3Dmaps_sv.tactile.gps%26w%3D224%26h%3D298%26yaw%3D293.01364%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656!4m7!3m6!1s0x9427dbec696f3717:0xcf1bdf041ef566cb!8m2!3d-29.4209434!4d-66.8408089!14m1!1BCgIgARICCAI"
+    }
+  ]
+}
