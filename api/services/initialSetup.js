@@ -9,6 +9,7 @@ module.exports = async () => {
         const vaccine = new Vaccine({ _id: uuid.v4(), ...vaccination });
         await vaccine.save().catch((e) => console.error(e));
       }
+      console.log('Initial Setup Finished');
     }
   });
 };
