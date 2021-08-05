@@ -1,35 +1,40 @@
 const mongoose = require('mongoose');
-const Schema = require('mongoose').Schema;
 
-const VaccinationSchema = new Schema({
-  _id: { type: String },
+const VaccinationSchema = new mongoose.Schema({
   name: { type: String },
   address: { type: String },
   latitude: { type: Number },
   longitude: { type: Number },
+  dosesInProgress: { type: Array, default: [] },
+  dosesCompleted: { type: Array, default: [] },
   url: { type: String },
 });
 
 VaccinationSchema.methods.joiValidateNew = function (obj) {
   const Joi = require('joi');
   const schema = Joi.object({
-    _id: Joi.string(),
     name: Joi.string().required(),
     address: Joi.string().required(),
     latitude: Joi.number().required(),
     longitude: Joi.number().required(),
+    dosesInProgress: Joi.array(),
+    dosesCompleted: Joi.array(),
     url: Joi.string().required(),
   });
   return schema.validate(obj);
 };
 
 VaccinationSchema.methods.joiValidate = function (obj) {
-  const Joi = require('joi');
+  const Joi = require('@hapi/joi');
+  Joi.objectId = require('joi-objectid')(Joi);
+
   const schema = Joi.object({
-    _id: Joi.string().required(),
+    _id: Joi.objectId().required(),
     name: Joi.string(),
     address: Joi.string(),
     latitude: Joi.number(),
+    dosesInProgress: Joi.array(),
+    dosesCompleted: Joi.array(),
     longitude: Joi.number(),
     url: Joi.string(),
   });

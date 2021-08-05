@@ -5,6 +5,7 @@ const cors = require('cors');
 //routes 1
 const indexRouter = require('./routes/index.routes');
 const vaccinationsRouter = require('./routes/vaccination.routes');
+const appointmentsRouter = require('./routes/appointments.routes');
 
 //Express config
 const app = express();
@@ -34,6 +35,7 @@ db.mongoose
 //Routes
 app.use('/', indexRouter);
 app.use('/vaccination', vaccinationsRouter);
+app.use('/vaccination/appointments', appointmentsRouter);
 
 //Start server
 const PORT = process.env.PORT || 3000;

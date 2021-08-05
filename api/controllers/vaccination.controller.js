@@ -1,5 +1,40 @@
 const Vaccinations = require('../schemas/Vaccination.schema');
-const uuid = require('uuid');
+
+const newVaccinationPlace = async (req, res) => {
+  if (!req.body || !Object.keys(req.body).length)
+    res.status(400).send({ message: 'BAD_REQUEST' });
+  const newPlace = new Vaccinations(req.body);
+
+  //Body Validation with joi
+  const { error: _error } = newPlace.joiValidateNew(req.body);
+  if (_error) {
+    res.status(400).send({ message: 'INVALID_BODY' });
+    return;
+  }
+
+  newPlace.dosesInProgress = [];
+  newPlace.dosesCompleted = [];
+
+  await newPlace
+    .save()
+    .catch((e) => console.log('ERROR SAVING NEW VACCINE PLACE =>', e));
+  res.send({ message: 'Vaccine Place Saved', body: newPlace });
+};
+
+const getPlaceForDose = async () => {
+  const places = await Vaccinations.find();
+  let placeWithLessDosesInProgress = places[0];
+
+  places.forEach((place) => {
+    if (
+      place.dosesInProgress.length <
+      placeWithLessDosesInProgress.dosesInProgress.length
+    ) {
+      placeWithLessDosesInProgress = place;
+    }
+  });
+  return placeWithLessDosesInProgress;
+};
 
 const getVaccinationPlaces = async (req, res) => {
   const vaccinationPlaces = await Vaccinations.find().catch((e) =>
@@ -21,25 +56,6 @@ const getVaccinationPlaceById = async (req, res) => {
   vaccinationPlaces
     ? res.json(vaccinationPlaces)
     : res.status(404).send({ message: 'NOT_FOUND' });
-};
-
-const newVaccinationPlace = async (req, res) => {
-  if (!req.body || !Object.keys(req.body).length)
-    res.status(400).send({ message: 'BAD_REQUEST' });
-  const newPlace = new Vaccinations(req.body);
-
-  //Body Validation with joi
-  const { error: _error } = newPlace.joiValidateNew(req.body);
-  if (_error) {
-    res.status(400).send({ message: 'INVALID_BODY' });
-    return;
-  }
-  newPlace._id = uuid.v4();
-
-  await newPlace
-    .save()
-    .catch((e) => console.log('ERROR SAVING NEW VACCINE PLACE =>', e));
-  res.send({ message: 'Vaccine Place Saved', body: newPlace });
 };
 
 const updateVaccinationPlace = async (req, res) => {
@@ -92,4 +108,5 @@ module.exports = {
   newVaccinationPlace,
   updateVaccinationPlace,
   deleteVaccinationPlace,
+  getPlaceForDose,
 };
