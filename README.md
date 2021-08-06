@@ -15,12 +15,12 @@ The page will reload if you make edits.
 
 ## Other Considerations
 
-Remember to add an .env and add the following
+Remember to add an .env file with the following
 
-#### DB_USER = <replace this with the correct data>
+#### DB_USER = /replace this with the correct data/
 
-#### DB_PASSWORD = <replace this with the correct data>
+#### DB_PASSWORD = /replace this with the correct data/
 
-#### DB_NAME = <replace this with the correct data>
+#### DB_NAME = /replace this with the correct data/
 
-#### DB_CLUSTER_NAME_AND_CODE = <replace this with the correct data>
+#### DB_CLUSTER_NAME_AND_CODE = /replace this with the correct data/
