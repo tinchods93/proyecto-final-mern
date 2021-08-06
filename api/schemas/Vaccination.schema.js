@@ -25,11 +25,10 @@ VaccinationSchema.methods.joiValidateNew = function (obj) {
 };
 
 VaccinationSchema.methods.joiValidate = function (obj) {
-  const Joi = require('@hapi/joi');
-  Joi.objectId = require('joi-objectid')(Joi);
+  const Joi = require('joi');
 
   const schema = Joi.object({
-    _id: Joi.objectId().required(),
+    _id: Joi.string().required(),
     name: Joi.string(),
     address: Joi.string(),
     latitude: Joi.number(),

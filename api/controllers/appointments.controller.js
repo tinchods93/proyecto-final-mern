@@ -17,7 +17,6 @@ const createUser = async (req, res, nextDoseDate) => {
     res.status(400).send({ message: 'INVALID_BODY' });
     return;
   }
-
   user.next_dose_date = nextDoseDate;
 
   await user
