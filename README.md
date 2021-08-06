@@ -15,7 +15,7 @@ The page will reload if you make edits.
 
 ## Other Considerations
 
-Remember to add an .env file with the following
+Remember to add an **.env** file with the following
 
 #### DB_USER = /replace this with the correct data/
 
