@@ -1,8 +1,7 @@
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { getTodayJSON } = require('../controllers/index.controller');
 
-router.get('/', function (req, res, next) {
-  res.status(200).send({ message: 'Un mensaje salvaje' });
-});
+router.get('/', getTodayJSON);
 
 module.exports = router;
