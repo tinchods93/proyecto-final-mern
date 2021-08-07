@@ -1,7 +1,12 @@
 const express = require('express');
-const indexRouter = require('./routes/index.routes');
 const dbConfig = require('./config/db.config');
 const cors = require('cors');
+
+//routes 1
+const indexRouter = require('./routes/index.routes');
+const vaccinationsRouter = require('./routes/vaccination.routes');
+const appointmentsRouter = require('./routes/appointments.routes');
+
 //Express config
 const app = express();
 
@@ -16,7 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 //Database
 const { db } = require('./models/index');
 const initialSetup = require('./services/initialSetup');
-
 db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
@@ -30,6 +34,8 @@ db.mongoose
 
 //Routes
 app.use('/', indexRouter);
+app.use('/vaccination', vaccinationsRouter);
+app.use('/vaccination/appointments', appointmentsRouter);
 
 //Start server
 const PORT = process.env.PORT || 3000;

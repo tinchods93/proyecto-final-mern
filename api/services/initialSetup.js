@@ -6,9 +6,10 @@ module.exports = async () => {
   Vaccine.estimatedDocumentCount(async (err, count) => {
     if (!err && count === 0) {
       for await (const vaccination of dataVaccination.vaccination) {
-        const vaccine = new Vaccine({ _id: uuid.v4(), ...vaccination });
+        const vaccine = new Vaccine(vaccination);
         await vaccine.save().catch((e) => console.error(e));
       }
+      console.log('Initial Setup Finished');
     }
   });
 };
