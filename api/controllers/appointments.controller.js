@@ -27,8 +27,9 @@ const createUser = async (req, res, nextDoseDate) => {
 };
 
 const newAppointment = async (req, res) => {
+  console.log('NEW APPOINTMENT=>', req.body);
   if (!req.body || !Object.keys(req.body).length)
-    res.status(400).send({ message: 'BAD_REQUEST' });
+    res.status(400).send({ message: 'BAD_REQUEST, line 32' });
 
   let user = await User.findOne({ dni: req.body.dni });
   let appointment;
@@ -50,7 +51,7 @@ const newAppointment = async (req, res) => {
     if (appointment) {
       const validate = validateAppointment(appointment);
       if (validate.statusCode === 400) {
-        res.status(validate.statusCode).send(validate.body);
+        res.send({ code: validate.statusCode, ...validate.body });
         return;
       }
     }
@@ -68,7 +69,7 @@ const newAppointment = async (req, res) => {
     state_process: 'IN_PROGRESS',
   });
 
-  await appointment
+  const uploadedAppointment = await appointment
     .save()
     .catch((e) => console.error('ERROR IN APPOINTMENT CREATION', e));
 
@@ -82,9 +83,13 @@ const newAppointment = async (req, res) => {
     console.error('ERROR IN Vaccination UPDATE from NEW APPOINTMENT', e)
   );
 
+  const response = await Appointment.findById(uploadedAppointment._id)
+    .populate('place_id')
+    .populate('user_id');
+
   res.send({
     message: 'New appointment created successfully',
-    body: user,
+    appointment: response,
   });
 };
 
@@ -93,20 +98,26 @@ const newAppointment = async (req, res) => {
  */
 const getAppointments = async (req, res) => {
   let appointments;
+  const miQuery = req.query;
 
-  if (!Object.keys(req.query).length) {
+  if (!Object.keys(miQuery).length) {
     appointments = await Appointment.find();
     res.send({ appointments });
     return;
   }
+  if (miQuery.user_dni) {
+    const user_id = await User.findOne({ dni: miQuery.user_dni });
+    delete miQuery.user_dni;
+    miQuery.user_id = user_id;
+  }
 
-  if (Boolean(req.query.populate)) {
-    delete req.query.populate;
-    appointments = await Appointment.find({ ...req.query })
+  if (Boolean(miQuery.populate)) {
+    delete miQuery.populate;
+    appointments = await Appointment.find({ ...miQuery })
       .populate('place_id')
       .populate('user_id');
   } else {
-    appointments = await Appointment.find({ ...req.query });
+    appointments = await Appointment.find({ ...miQuery });
   }
 
   res.send({ appointments });
