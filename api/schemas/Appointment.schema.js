@@ -10,8 +10,8 @@ const AppointmentSchema = new Schema({
 AppointmentSchema.methods.validateNew = function (obj) {
   const Joi = require('joi');
   const schema = Joi.object({
-    place_id: Joi.string(),
-    user_id: Joi.string(),
+    place_id: Joi.string().required(),
+    user_id: Joi.string().required(),
     date: Joi.date(),
     state_process: Joi.string(),
   });

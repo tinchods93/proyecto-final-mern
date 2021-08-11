@@ -13,13 +13,13 @@ const VaccinationSchema = new mongoose.Schema({
 VaccinationSchema.methods.joiValidateNew = function (obj) {
   const Joi = require('joi');
   const schema = Joi.object({
-    name: Joi.string().required(),
-    address: Joi.string().required(),
+    name: Joi.string().min(3).max(30).required(),
+    address: Joi.string().min(3).max(50).required(),
     latitude: Joi.number().required(),
     longitude: Joi.number().required(),
     dosesInProgress: Joi.array(),
     dosesCompleted: Joi.array(),
-    url: Joi.string().required(),
+    url: Joi.string().uri().allow('').required(),
   });
   return schema.validate(obj);
 };
@@ -29,13 +29,13 @@ VaccinationSchema.methods.joiValidate = function (obj) {
 
   const schema = Joi.object({
     _id: Joi.string().required(),
-    name: Joi.string(),
-    address: Joi.string(),
+    name: Joi.string().min(3).max(30),
+    address: Joi.string().min(3).max(50),
     latitude: Joi.number(),
+    longitude: Joi.number(),
     dosesInProgress: Joi.array(),
     dosesCompleted: Joi.array(),
-    longitude: Joi.number(),
-    url: Joi.string(),
+    url: Joi.string().uri().allow(''),
   });
   return schema.validate(obj);
 };

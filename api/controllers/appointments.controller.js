@@ -11,9 +11,10 @@ const createUser = async (req, res, nextDoseDate) => {
   const user = new User(req.body);
 
   //Body Validation with joi
-  const { error: _error } = user.validateNew(req.body);
+  const validate = user.validateNew(req.body);
 
-  if (_error) {
+  console.log('VALIDATE =>', validate);
+  if (validate.error) {
     res.status(400).send({ message: 'INVALID_BODY' });
     return;
   }
@@ -57,9 +58,10 @@ const newAppointment = async (req, res) => {
     }
   } else {
     user = await createUser(req, res, nextDoseDate);
+    if (!user) return;
   }
-  //In case, none of those is true, it means we can generate a new Appointment
 
+  //In case, none of those is true, it means we can generate a new Appointment
   const placeForDose = await getPlaceForDose();
 
   appointment = new Appointment({
