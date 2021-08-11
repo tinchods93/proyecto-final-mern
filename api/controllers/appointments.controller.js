@@ -13,7 +13,6 @@ const createUser = async (req, res, nextDoseDate) => {
   //Body Validation with joi
   const validate = user.validateNew(req.body);
 
-  console.log('VALIDATE =>', validate);
   if (validate.error) {
     res.status(400).send({ message: 'INVALID_BODY' });
     return;
@@ -28,7 +27,6 @@ const createUser = async (req, res, nextDoseDate) => {
 };
 
 const newAppointment = async (req, res) => {
-  console.log('NEW APPOINTMENT=>', req.body);
   if (!req.body || !Object.keys(req.body).length)
     res.status(400).send({ message: 'BAD_REQUEST, line 32' });
 

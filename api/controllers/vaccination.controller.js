@@ -52,7 +52,7 @@ const getVaccinationPlaceById = async (req, res) => {
   const vaccinationPlaces = await Vaccinations.findById(req.params.id).catch(
     (e) => console.log('ERROR IN getVaccinationPlaceById =>', e)
   );
-  
+
   vaccinationPlaces
     ? res.json(vaccinationPlaces)
     : res.status(404).send({ message: 'NOT_FOUND' });
@@ -63,7 +63,7 @@ const updateVaccinationPlace = async (req, res) => {
     res.status(400).send({ message: 'BAD_REQUEST' });
 
   const updateBody = new Vaccinations(req.body);
-  console.log("DATA RECEIVED",req.body);
+
   //Body Validation with joi
   const { error: _error } = updateBody.joiValidate(req.body);
   if (_error) {
@@ -86,7 +86,6 @@ const updateVaccinationPlace = async (req, res) => {
 
 const deleteVaccinationPlace = async (req, res) => {
   if (!req.params.id) res.status(400).send({ message: 'BAD_REQUEST' });
-  console.log('PASO');
 
   const deleted = await Vaccinations.findByIdAndDelete(req.params.id)
     .then((a) => a)
