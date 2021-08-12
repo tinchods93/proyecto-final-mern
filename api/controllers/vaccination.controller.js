@@ -66,8 +66,8 @@ const updateVaccinationPlace = async (req, res) => {
 
   //Body Validation with joi
   const { error: _error } = updateBody.joiValidate(req.body);
-
   if (_error) {
+    console.log({ error: _error, message: 'ID IS REQUIRED' });
     res.status(400).send({ error: 'INVALID_BODY', message: 'ID IS REQUIRED' });
     return;
   }
@@ -86,7 +86,6 @@ const updateVaccinationPlace = async (req, res) => {
 
 const deleteVaccinationPlace = async (req, res) => {
   if (!req.params.id) res.status(400).send({ message: 'BAD_REQUEST' });
-  console.log('PASO');
 
   const deleted = await Vaccinations.findByIdAndDelete(req.params.id)
     .then((a) => a)

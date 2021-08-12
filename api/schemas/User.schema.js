@@ -24,10 +24,10 @@ const UserSchema = new Schema({
 UserSchema.methods.validateNew = function (obj) {
   const Joi = require('joi');
   const schema = Joi.object({
-    dni: Joi.string().required(),
-    name: Joi.string().required(),
-    last_name: Joi.string().required(),
-    address: Joi.string().required(),
+    dni: Joi.string().min(8).max(10).required(),
+    name: Joi.string().min(3).max(30).required(),
+    last_name: Joi.string().min(3).max(50).required(),
+    address: Joi.string().min(3).max(50).required(),
     born_date: Joi.date().required(),
     dose: Joi.number(),
     last_dose_date: Joi.date(),
@@ -42,9 +42,10 @@ UserSchema.methods.validateUpdate = function (obj) {
 
   const schema = Joi.object({
     _id: Joi.objectId().required(),
-    name: Joi.string(),
-    last_name: Joi.string(),
-    address: Joi.string(),
+    dni: Joi.string().min(8).max(10),
+    name: Joi.string().min(3).max(30),
+    last_name: Joi.string().min(3).max(50),
+    address: Joi.string().min(3).max(50),
     born_date: Joi.date(),
     dose: Joi.number(),
     last_dose_date: Joi.date(),
